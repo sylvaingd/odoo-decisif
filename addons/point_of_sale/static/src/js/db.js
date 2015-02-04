@@ -170,8 +170,8 @@ function openerp_pos_db(instance, module){
                 }
                 this.category_search_string[categ_id] += search_string;
 
-                var ancestors = this.get_category_ancestors_ids(categ_id) || [];
-
+                //var ancestors = this.get_category_ancestors_ids(categ_id) || [];
+		var ancestors = [];
                 for(var j = 0, jlen = ancestors.length; j < jlen; j++){
                     var ancestor = ancestors[j];
                     if(! stored_categories[ancestor]){
