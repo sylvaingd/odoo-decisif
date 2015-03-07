@@ -79,22 +79,27 @@ function openerp_restaurant_multiprint(instance,module){
 
             for( product in current){
                 if (typeof old[product] === 'undefined'){
-                    add.push({
-                        'id': product,
-                        'name': this.pos.db.get_product_by_id(product).display_name,
-                        'quantity': current[product],
-                    });
+		    //for(i =0; i<current[product] ; i++){
+                    	add.push({
+                        	'id': product,
+                        	'name': this.pos.db.get_product_by_id(product).display_name,
+                        	'quantity': current[product],
+				'service': this.pos.db.get_product_by_id(product).product_tmpl_id.type, 
+                    	});
+		    //}
                 }else if( old[product] < current[product]){
                     add.push({
                         'id': product,
                         'name': this.pos.db.get_product_by_id(product).display_name,
                         'quantity': current[product] - old[product],
+			'service': this.pos.db.get_product_by_id(product).product_tmpl_id.type,
                     });
                 }else if( old[product] > current[product]){
                     rem.push({
                         'id': product,
                         'name': this.pos.db.get_product_by_id(product).display_name,
                         'quantity': old[product] - current[product],
+			'service': this.pos.db.get_product_by_id(product).product_tmpl_id.type,
                     });
                 }
             }
@@ -105,6 +110,7 @@ function openerp_restaurant_multiprint(instance,module){
                         'id': product,
                         'name': this.pos.db.get_product_by_id(product).display_name,
                         'quantity': old[product], 
+			'service': this.pos.db.get_product_by_id(product).product_tmpl_id.type,
                     });
                 }
             }
@@ -116,6 +122,7 @@ function openerp_restaurant_multiprint(instance,module){
                 var self = this;
                 function product_in_category(product_id){
                     var cat = self.pos.db.get_product_by_id(product_id).pos_categ_id[0];
+		    if(! cat) return true; //on met les produits sans catego (sur place a emp...)
                     while(cat){
                         for(var i = 0; i < categories.length; i++){
                             if(cat === categories[i]){
@@ -131,7 +138,7 @@ function openerp_restaurant_multiprint(instance,module){
                 var _rem = [];
                 
                 for(var i = 0; i < add.length; i++){
-                    if(product_in_category(add[i].id)){
+                    if(product_in_category(add[i].id) || add[i].service == 'service' ){
                         _add.push(add[i]);
                     }
                 }
@@ -146,7 +153,8 @@ function openerp_restaurant_multiprint(instance,module){
             }
 
             return {
-                'new': add,
+                //'services': pdt_services,
+		'new': add,
                 'cancelled': rem,
                 'table': json.table || 'unknown table',
                 'name': json.name  || 'unknown order',

@@ -67,5 +67,13 @@
             name="point_of_sale.report_sessionsummary"
             file="point_of_sale.report_sessionsummary"
          />
+        <report
+            id="action_report_pos_session_summary_detailed"
+            string="Session Summary Detailed"
+            model="pos.session"
+            report_type="qweb-pdf"
+            name="point_of_sale.report_sessionsummary_detailed"
+            file="point_of_sale.report_sessionsummary_detailed"
+         />
     </data>
 </openerp>

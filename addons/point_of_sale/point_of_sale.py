@@ -22,9 +22,12 @@
 import logging
 import time
 
+from openerp import models, fields as v8fields
+from openerp import api
 from openerp import tools
 from openerp.osv import fields, osv
 from openerp.tools.translate import _
+
 
 import openerp.addons.decimal_precision as dp
 import openerp.addons.product.product
@@ -228,6 +231,7 @@ class pos_config(osv.osv):
 class pos_session(osv.osv):
     _name = 'pos.session'
     _order = 'id desc'
+    total_income = v8fields.Float('Total Transactions', digits_compute=dp.get_precision('Account'), compute='_compute_total_income', store = False)
 
     POS_SESSION_STATE = [
         ('opening_control', 'Opening Control'),  # Signal open
@@ -347,6 +351,14 @@ class pos_session(osv.osv):
     _sql_constraints = [
         ('uniq_name', 'unique(name)', "The name of this POS Session must be unique !"),
     ]
+
+    @api.one
+    @api.depends('statement_ids.balance_end')
+    def _compute_total_income(self):
+        """
+        Methode pour calculer le total des entrees d'argent d'une session
+        """
+        self.total_income = sum( st.balance_end_real for st in self.statement_ids)
 
     def _check_unicity(self, cr, uid, ids, context=None):
         for session in self.browse(cr, uid, ids, context=None):
