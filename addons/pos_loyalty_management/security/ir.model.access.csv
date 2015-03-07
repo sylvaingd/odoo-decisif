@@ -1,0 +1,7 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+,,,,,,,
+access_loyalty_management_user, loyalty.management ,model_loyalty_management,group_loyalty_management_user,1,0,0,0
+access_redeem_rule_list_user,redeem.rule.list,model_redeem_rule_list,group_loyalty_management_user,1,0,0,0
+,,,,,,,
+access_loyalty_management_manager, loyalty.management ,model_loyalty_management,group_loyalty_management_manager,1,1,1,1
+access_redeem_rule_list_manager,redeem.rule.list,model_redeem_rule_list,group_loyalty_management_manager,1,1,1,1

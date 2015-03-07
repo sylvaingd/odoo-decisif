@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data noupdate="0">
+		
+		<!-- Sequences for rule.list -->
+		<record id="seq_rule_type_id" model="ir.sequence.type">	
+			<field name="name">Rule List</field>
+			<field name="code">rule.list1</field>
+		</record>
+		<record id="seq_rule_id" model="ir.sequence">
+			<field name="name">Rule List</field>
+			<field name="code">rule.list1</field>
+			<field name="prefix">R</field>
+			<field name="padding">3</field>
+		</record>
+
+		<!-- Sequences for rule.list -->
+		<record id="redeem_seq_id" model="ir.sequence.type">	
+			<field name="name">Redeem Sequence</field>
+			<field name="code">rule.list2</field>
+		</record>
+		<record id="redeem_seq_rule_id" model="ir.sequence">
+			<field name="name">Rule List</field>
+			<field name="code">rule.list2</field>
+			<field name="prefix">R</field>
+			<field name="padding">3</field>
+		</record>
+    </data>
+</openerp>

@@ -1,0 +1,14 @@
+.pos .pos-content {
+    top: 90px;
+}
+
+#pos_extra_header{
+    /*background: none repeat scroll 0 0 #393939;*/
+    background: #F0EEEE;
+    /*border-top: 1px solid #666666;*/
+    color: gray;
+    height: 40px;
+    left: 437px;
+    top: 48px;
+    position: absolute;
+}

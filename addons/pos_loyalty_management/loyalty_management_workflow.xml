@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+	<data>
+
+	<record model="workflow" id="wkf_rulemod">
+		<field name="name">loyalty_management_workflow_test</field>
+		<field name="osv">loyalty.management</field>
+		<field name="on_create">True</field>
+	</record>
+	
+	<!-- Activity -->
+	 <record model="workflow.activity" id="act_draft">
+		<field name="wkf_id" ref="wkf_rulemod" />
+		<field name="flow_start">True</field>
+		<field name="name">draft</field>
+		<field name="kind">function</field>
+		<field name="action">rulemod_draft()</field>
+	</record> 
+	<record model="workflow.activity" id="act_confirmed">
+		<field name="wkf_id" ref="wkf_rulemod" />
+		<field name="name">confirmed</field>
+		<field name="kind">function</field>
+		<field name="action">rulemod_confirmed()</field>
+	</record>
+	<record model="workflow.activity" id="act_approved">
+		<field name="wkf_id" ref="wkf_rulemod" />
+		<field name="name">approved</field>
+		<field name="kind">function</field>
+		<field name="action">rulemod_approved()</field>
+	</record>
+	<record model="workflow.activity" id="act_cancel">
+		<field name="wkf_id" ref="wkf_rulemod" />
+		<field name="name">cancel</field>
+		<field name="kind">function</field>
+		<field name="action">rulemod_cancel()</field>
+		<field name="flow_stop">True</field>
+	</record>
+	
+
+	<!-- Transistion -->
+	<record model="workflow.transition" id="t1">
+		<field name="act_from" ref="act_draft" />
+		<field name="act_to" ref="act_confirmed" />
+		<field name="signal">rulemod_confirmed</field>
+	</record>
+	<record model="workflow.transition" id="t2">
+		<field name="act_from" ref="act_confirmed" />
+		<field name="act_to" ref="act_approved" />
+		<field name="signal">rulemod_approved</field>
+	</record>
+	<record model="workflow.transition" id="t3">
+		<field name="act_from" ref="act_approved" />
+		<field name="act_to" ref="act_cancel" />
+		<field name="signal">rulemod_cancel</field>
+	</record>
+	
+</data>		
+</openerp>
