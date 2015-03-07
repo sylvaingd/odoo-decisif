@@ -272,7 +272,7 @@ td {
     display: table-cell;
     left:0;
     top:0;
-    width:439px;
+    /* width:439px; */
     height:100%;
     margin:0;
     padding:0;
@@ -282,17 +282,21 @@ td {
     vertical-align: middle;
 }
 .pos .pos-logo {
-    height: 35px;
-    margin-left: 7px;
+    height: 25px;
+    /*margin-left: 7px;
     margin-top: 2px;
+    margin: 10px;*/
+    display: block;
     vertical-align:middle;
 } 
 .pos .pos-branding .username{
     float:right;
     color:#DDD;
     font-size:16px;
-    margin-right:32px;
-    line-height: 48px;
+    /*margin-right:10px;
+    margin-left: 7px;*/
+    margin:5px;
+    line-height: 22px;
     font-style:italic;
 }
 
@@ -300,7 +304,7 @@ td {
 
 .pos .pos-rightheader {
     position: absolute;
-    left:440px;
+    left:220px;
     right:0;
     top:0;
     height:100%;
@@ -340,10 +344,11 @@ td {
     font-size: 16px;
     font-weight: 800;
     vertical-align: middle;
+    backgroung:rgb(122,205,74);
 }
 .pos .order-button.selected .order-sequence{
     color: white;
-    background: black;
+    background: rgb(122,205,74); /*black;*/
     display: inline-block;
     line-height: 24px;
     min-width: 24px;
@@ -371,13 +376,20 @@ td {
 
 .pos .order-selector {
     display: inline-block;
-    max-width: 640px;
+   /* max-width: 90%;*/
     max-height: 48px;
     white-space: nowrap;
-    overflow: hidden;
-    overflow-x: auto;
+    right:90px;
+    float:left;
+    /*overflow: hidden;
+    overflow-x: auto;*/
 }
 .pos .orders {
+    max-width:950px;
+    float:right;
+    overflow:hidden;
+    overflow-x:overlay;
+    white-space:nowrap;
     display: inline-block;
     vertical-align: top;
     margin-left: 8px;
@@ -403,13 +415,17 @@ td {
 }
 .pos .pos-rightheader .header-button:last-child{
     border-left:  1px solid #3a3a3a;
+    background-color:rgb(197,52,0);
+    color:white;
+    background-color:rgb(197,52,0);
+    color:white;
 }
 .pos .pos-rightheader .header-button:active{
     background: rgba(0,0,0,0.2);
     color:#EEE;
 }
 .pos .pos-rightheader .header-button.confirm {
-    background: #359766;
+    background: #74CA9F;
     color: white;
     font-weight: bold;
 }
@@ -417,14 +433,16 @@ td {
 /*  c) The notifications indicator */
 
 .pos .oe_status{
-    float:right; 
+    float:left; 
     color: rgba(255,255,255,0.4);
-    padding: 14px;
+    /*padding: 14px;*/
+    padding-left: 6px;
     line-height: 20px;
     font-size: 20px;
     vertical-align:middle;
     font-style: italic;
     cursor:pointer;
+    display: table-cell;
 }
 .pos .oe_status.oe_inactive{
     cursor: default;
@@ -545,7 +563,7 @@ td {
 .pos .popup  button:active{
     border: none;
     color: white;
-    background: #7f82ac;
+    background:#393939; /*#7f82ac;*/
 }
 
 /*  ********* The Numpad ********* */
@@ -586,7 +604,7 @@ td {
 .pos .rightpane-header {
     padding: 0;
     height: 48px;
-    border-bottom: 1px solid #c7c7c7;
+    border-bottom: 5px solid #c7c7c7;
     background: #d3d3d3;
     text-align: center;
 }
@@ -626,6 +644,8 @@ td {
     display: inline-block;
     text-align: left;
     float:left;
+    background-color:#EAC31C;
+    border-color:rgb(224,226,79);
 }
 .pos .breadcrumb{
     float: left;
@@ -642,7 +662,7 @@ td {
     display: inline-block;
     padding: 0 9px;
     vertical-align: top;
-    color: #808080;
+    color: white; /*#808080;*/
     font-size: 14px;
     cursor: pointer;
 }
@@ -704,12 +724,14 @@ td {
 }
 .pos .category-list.simple {
     padding: 0px;
-    background: #cecece;
+    background: #F4912A;/* #cecece;*/
     display: -webkit-flex;
     display: flex;
     -webkit-flex-flow: row wrap;
     flex-flow: row wrap;
     border-bottom: none;
+    color: white;
+    
 }
 
 
@@ -741,7 +763,8 @@ td {
     flex-grow: 1;
     -webkit-flex-grow: 1;
     cursor: pointer;
-    background: #e2e2e2;
+    background: #FF992F;/*#e2e2e2;*/
+    color: white;
 }
 .pos .category-simple-button:active{
     color: white;
@@ -827,9 +850,10 @@ td {
     vertical-align: top;
     color: white;
     line-height: 13px;
-    background: #7f82ac;
+    background: #393939; /*#7f82ac;*/
     padding: 2px 5px;
     border-radius: 2px;
+    font-size:16px;
 }
 
 .pos .product .product-name {
@@ -1068,7 +1092,10 @@ td {
 }
 .pos .pos-payment-container .infoline.bigger{
     opacity: 1;
-    font-size: 20px;
+    font-size: 30px;
+    background-color:#66BE10;
+    border-radius:5px;
+    color: white;
 }
 .pos .pos-payment-container .right-block{
     display: inline-block;
@@ -1381,7 +1408,7 @@ td {
     top: 0px;
     width:100%;
     height: 100%;
-    background: #F0EEEE;
+    background: #393939;/*#F0EEEE;*/
 }
 
 .pos .order-scroller{
@@ -1436,6 +1463,9 @@ td {
     padding-top:5px;
     border-top: solid 2px;
     border-color:#777;
+    font-size:20px;
+    color: rgb(197,52,0);
+    font-weight:bolder;
 }
 .pos .order .summary .line .subentry{
     font-size: 14px;

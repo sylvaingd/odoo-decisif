@@ -1138,11 +1138,11 @@ function openerp_pos_widgets(instance, module){ //module is instance.point_of_sa
             this.close_button.appendTo(this.$('.pos-rightheader'));
 
             this.notification = new module.SynchNotificationWidget(this,{});
-            this.notification.appendTo(this.$('.pos-rightheader'));
+            this.notification.appendTo(this.$('.pos-branding'));
 
             if(this.pos.config.use_proxy){
                 this.proxy_status = new module.ProxyStatusWidget(this,{});
-                this.proxy_status.appendTo(this.$('.pos-rightheader'));
+                this.proxy_status.appendTo(this.$('.pos-branding'));
             }
 
             this.username   = new module.UsernameWidget(this,{});

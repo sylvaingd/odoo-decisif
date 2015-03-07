@@ -1074,6 +1074,16 @@ function openerp_pos_screens(instance, module){ //module is instance.point_of_sa
                         self.validate_order();
                     },
                 });
+
+	    this.add_action_button({
+	            label: _t('Print receipt'),
+		    name: 'print_receipt',
+		    // manque icon: '',
+		    icon: '/point_of_sale/static/src/img/icons/png48/printer.png',
+		    click: function(){
+		        self.print_receipt();
+		    },
+		});
            
             if( this.pos.config.iface_invoicing ){
                 this.add_action_button({
@@ -1249,6 +1259,18 @@ function openerp_pos_screens(instance, module){ //module is instance.point_of_sa
                    || currentOrder.getPaidTotal() + 0.000001 >= currentOrder.getTotalTaxIncluded());
 
         },
+	print_receipt: function(options){
+	    var self = this;
+	    options = options || {};
+	    var currentOrder = this.pos.get('selectedOrder');
+                if(this.pos.config.iface_print_via_proxy){
+		    var receipt = currentOrder.export_for_printing();
+                    this.pos.proxy.print_receipt(QWeb.render('XmlReceipt',{
+                        receipt: receipt, widget: self,
+                    }));
+		}
+            return;
+	},
         validate_order: function(options) {
             var self = this;
             options = options || {};
@@ -1277,6 +1299,8 @@ function openerp_pos_screens(instance, module){ //module is instance.point_of_sa
             if(!this.is_paid()){
                 return;
             }
+
+	    // si aucun moyen de paiement cash alors pas de rendu possible
 
             // The exact amount must be paid if there is no cash payment method defined.
             if (Math.abs(currentOrder.getTotalTaxIncluded() - currentOrder.getPaidTotal()) > 0.00001) {
@@ -1328,15 +1352,10 @@ function openerp_pos_screens(instance, module){ //module is instance.point_of_sa
 
             }else{
                 this.pos.push_order(currentOrder) 
-                if(this.pos.config.iface_print_via_proxy){
-                    var receipt = currentOrder.export_for_printing();
-                    this.pos.proxy.print_receipt(QWeb.render('XmlReceipt',{
-                        receipt: receipt, widget: self,
-                    }));
                     this.pos.get('selectedOrder').destroy();    //finish order and go back to scan screen
-                }else{
-                    this.pos_widget.screen_selector.set_current_screen(this.next_screen);
-                }
+                //}else{
+                //    this.pos_widget.screen_selector.set_current_screen(this.next_screen);
+                //}
             }
 
             // hide onscreen (iOS) keyboard 
